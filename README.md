@@ -6,7 +6,7 @@ Eine benutzerfreundliche Windows-App zur Erfassung, Verwaltung und dem Export vo
 
 ## ⬇️ Download
 
-**[➡ Stundenrechner.exe herunterladen (v1.0)](https://github.com/HenryMirus/Stundenrechner/releases/download/v1.0/Stundenrechner.exe)**
+**[➡ Stundenrechner.exe herunterladen (neueste Version)](https://github.com/HenryMirus/Stundenrechner/releases/latest/download/Stundenrechner.exe)**
 
 > Keine Installation notwendig – einfach herunterladen und starten.
 
