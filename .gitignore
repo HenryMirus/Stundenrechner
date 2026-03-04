@@ -1,0 +1,34 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.egg-info/
+*.egg
+.eggs/
+
+# Virtuelle Umgebung
+.venv/
+venv/
+env/
+
+# PyInstaller Build-Dateien
+build/
+*.spec
+
+# Dist – EXE behalten, alles andere ignorieren
+dist/*
+!dist/Stundenrechner.exe
+
+# Datenbank (benutzerspezifisch, nicht versionieren)
+*.db
+*.sqlite
+*.sqlite3
+
+# VS Code
+.vscode/
+
+# Betriebssystem
+Thumbs.db
+desktop.ini
+.DS_Store
