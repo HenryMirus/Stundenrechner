@@ -4,11 +4,33 @@ Eine benutzerfreundliche Windows-App zur Erfassung, Verwaltung und dem Export vo
 
 ---
 
+## ⬇️ Download
+
+**[➡ Stundenrechner.exe herunterladen (v1.0)](https://github.com/HenryMirus/Stundenrechner/releases/download/v1.0/Stundenrechner.exe)**
+
+> Keine Installation notwendig – einfach herunterladen und starten.
+
+---
+
 ## Voraussetzungen
 
 - Windows 10 oder neuer
 - Ein Microsoft-Konto (Outlook, Hotmail, Microsoft 365 oder Arbeits-/Schulkonto)
-- Keine Installation notwendig – einfach die `Stundenrechner.exe` starten
+
+---
+
+## Installation & erster Start
+
+1. Die `Stundenrechner.exe` über den Link oben herunterladen
+2. Die Datei an einen beliebigen Ort speichern (z. B. Desktop oder `C:\Programme`)
+3. Doppelklick auf `Stundenrechner.exe` – fertig, keine Installation nötig
+
+### ⚠️ Windows SmartScreen-Warnung
+
+Beim ersten Öffnen kann Windows SmartScreen eine Sicherheitswarnung anzeigen, da die Datei nicht signiert ist. So umgehen Sie die Warnung:
+
+1. Klicken Sie auf **„Weitere Informationen"**
+2. Klicken Sie auf **„Trotzdem ausführen"**
 
 ---
 
@@ -110,12 +132,3 @@ C:\Benutzer\[IhrName]\AppData\Roaming\Stundenrechner\auth\token_cache.bin
 ```
 
 > **Hinweis:** Die Datenbankdateien sind gerätespezifisch. Möchten Sie Daten auf ein anderes Gerät übertragen, kopieren Sie die entsprechende `.db`-Datei an denselben Pfad auf dem Zielgerät.
-
----
-
-## Hinweis beim ersten Start auf einem neuen PC
-
-Windows SmartScreen kann beim ersten Öffnen der `Stundenrechner.exe` eine Warnung anzeigen, da die Datei nicht signiert ist. So umgehen Sie die Warnung:
-
-1. Klicken Sie auf **„Weitere Informationen"**
-2. Klicken Sie auf **„Trotzdem ausführen"**
