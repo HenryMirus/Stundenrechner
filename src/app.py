@@ -17,10 +17,10 @@ from tkinter import filedialog, messagebox
 import ttkbootstrap as ttk
 from ttkbootstrap.constants import *
 
-from auth import MicrosoftAuth
-from database import Database
-from exporter import ExcelExporter
-from onedrive import OneDriveClient
+from src.auth import MicrosoftAuth
+from src.database import Database
+from src.exporter import ExcelExporter
+from src.onedrive import OneDriveClient
 
 # Konstanten 
 
