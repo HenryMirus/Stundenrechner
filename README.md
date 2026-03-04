@@ -7,13 +7,25 @@ Eine benutzerfreundliche Windows-App zur Erfassung, Verwaltung und dem Export vo
 ## Voraussetzungen
 
 - Windows 10 oder neuer
+- Ein Microsoft-Konto (Outlook, Hotmail, Microsoft 365 oder Arbeits-/Schulkonto)
 - Keine Installation notwendig – einfach die `Stundenrechner.exe` starten
 
 ---
 
-## Erster Start
+## Erster Start & Anmeldung
 
-Beim ersten Start wird nach Ihrem **vollständigen Namen** gefragt. Dieser Name wird dauerhaft gespeichert und automatisch an den Dateinamen der exportierten Excel-Dateien angehangen.
+Beim ersten Start erscheint ein **Anmeldebildschirm**. Klicken Sie auf **„➕ Neues Konto hinzufügen"** – es öffnet sich ein Browser-Fenster, in dem Sie sich mit Ihrem Microsoft-Konto anmelden.
+
+Nach erfolgreicher Anmeldung wird das Konto gespeichert. Beim nächsten Start genügt ein Klick auf Ihren Namen – eine erneute Browser-Anmeldung ist in der Regel nicht notwendig.
+
+### Mehrere Konten
+
+Mehrere Microsoft-Konten können auf demselben PC verwendet werden. Im Anmeldebildschirm erscheinen alle gespeicherten Konten zur Auswahl. Jedes Konto hat eine **eigene, getrennte Datenbankdatei** – die Stunden eines Benutzers sind für andere nicht sichtbar.
+
+### Abmelden / Konto wechseln
+
+- **Abmelden:** Schaltfläche **„Abmelden"** oben rechts – Sie gelangen zurück zum Anmeldebildschirm. Das Konto bleibt gespeichert.
+- **Konto entfernen:** Auf das 🗑-Symbol neben dem Konto klicken – entfernt die gespeicherten Anmeldedaten. Die erfassten Stunden bleiben erhalten.
 
 ---
 
@@ -48,17 +60,30 @@ Unterhalb der Tagesübersicht werden die **Gesamtstunden des aktuellen Monats** 
 
 ## Excel-Export
 
-1. **Export-Pfad** auswählen (Standardmäßig: Dokumente-Ordner)  
-   → Über „Durchsuchen" einen anderen Ordner wählen
-2. **Monat** in der Dropdown-Liste auswählen
-3. Auf **„Als Excel exportieren"** klicken
+Die App unterstützt zwei Export-Modi, die pro Konto gespeichert werden:
+
+### Lokal speichern
+
+1. Exportmodus **„Lokal"** auswählen
+2. Über **„Durchsuchen"** einen Zielordner wählen (Standard: Dokumente-Ordner)
+3. **Monat** in der Dropdown-Liste auswählen
+4. Auf **„Als Excel exportieren"** klicken
+
+### In OneDrive speichern
+
+1. Exportmodus **„OneDrive"** auswählen
+2. Über **„📁 Ordner wählen"** den gewünschten OneDrive-Ordner auswählen
+3. **Monat** in der Dropdown-Liste auswählen
+4. Auf **„Als Excel exportieren"** klicken
+
+Die App zeigt beim Umschalten auf OneDrive automatisch den aktuellen Speicherplatz an (frei / fast voll / voll).
+
+> **Hinweis:** Wenn der OneDrive-Speicher voll ist, schlägt der Upload fehl. In diesem Fall bitte Dateien in OneDrive löschen oder den Speicherplan upgraden.
 
 ### Aufbau der exportierten Datei
 
 Die exportierte Datei wird automatisch benannt:  
 `Stundenzettel_Monat_Jahr_Vorname_Nachname.xlsx`
-
-Die Datei enthält:
 
 | Datum | Kunde | Komissions-Nr. | Aufgabe | Stunden |
 |---|---|---|---|---|
@@ -72,13 +97,19 @@ Die Datei enthält:
 
 ## Datenspeicherung
 
-Alle Daten werden lokal auf Ihrem Computer gespeichert unter:
+Alle Daten werden lokal auf Ihrem Computer gespeichert. Jedes Konto erhält eine eigene Datenbankdatei:
 
 ```
-C:\Benutzer\[IhrName]\AppData\Roaming\Stundenrechner\stundenrechner.db
+C:\Benutzer\[IhrName]\AppData\Roaming\Stundenrechner\stundenrechner_[KontoID].db
 ```
 
-> **Hinweis:** Diese Datenbank-Datei ist gerätespezifisch. Möchten Sie die Daten auf ein anderes Gerät übertragen, kopieren Sie diese Datei an denselben Speicherort auf dem Zielgerät.
+Die Anmeldedaten (Token-Cache) liegen unter:
+
+```
+C:\Benutzer\[IhrName]\AppData\Roaming\Stundenrechner\auth\token_cache.bin
+```
+
+> **Hinweis:** Die Datenbankdateien sind gerätespezifisch. Möchten Sie Daten auf ein anderes Gerät übertragen, kopieren Sie die entsprechende `.db`-Datei an denselben Pfad auf dem Zielgerät.
 
 ---
 

@@ -1,6 +1,7 @@
 """
 Datenbank-Modul für den Stundenrechner.
 Verwaltet alle SQLite-Operationen für Einträge und Aufgaben.
+Unterstützt benutzer-spezifische Datenbanken (eine DB pro Microsoft-Konto).
 """
 
 import sqlite3
@@ -10,14 +11,25 @@ import os
 class Database:
     """SQLite-Datenbank für Stundeneinträge und gespeicherte Aufgaben."""
 
-    def __init__(self):
-        # Datenbank im AppData-Verzeichnis speichern
+    def __init__(self, user_id_short: str | None = None):
+        """
+        Initialisiert die Datenbankverbindung.
+
+        Args:
+            user_id_short: Kurz-Hash der Microsoft-User-ID (12 Zeichen).
+                           Wenn angegeben, wird eine benutzer-spezifische DB verwendet.
+                           Wenn None, wird die Legacy-Datenbank 'stundenrechner.db' genutzt.
+        """
         app_dir = os.path.join(
             os.environ.get("APPDATA", os.path.expanduser("~")),
             "Stundenrechner"
         )
         os.makedirs(app_dir, exist_ok=True)
-        self.db_path = os.path.join(app_dir, "stundenrechner.db")
+        if user_id_short:
+            db_filename = f"stundenrechner_{user_id_short}.db"
+        else:
+            db_filename = "stundenrechner.db"
+        self.db_path = os.path.join(app_dir, db_filename)
         self.conn = sqlite3.connect(self.db_path)
         self._create_tables()
 

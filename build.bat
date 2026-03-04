@@ -23,7 +23,7 @@ if errorlevel 1 (
 
 echo.
 echo [3/3] Erstelle ausfuehrbare Datei...
-pyinstaller --onefile --windowed --name Stundenrechner --collect-all ttkbootstrap --clean app.py
+pyinstaller --onefile --windowed --name Stundenrechner --collect-all ttkbootstrap --collect-all msal --hidden-import=requests --hidden-import=msal --clean app.py
 if errorlevel 1 (
     echo FEHLER: Build fehlgeschlagen.
     pause
