@@ -30,8 +30,8 @@ GERMAN_MONTHS = [
 ]
 
 APP_TITLE = "Stundenrechner"
-WINDOW_SIZE = (760, 920)
-MIN_SIZE = (660, 920)
+WINDOW_SIZE = (760, 930)
+MIN_SIZE = (660, 930)
 THEME = "cosmo"
 FONT_FAMILY = "Segoe UI"
 
@@ -142,7 +142,7 @@ class OneDriveFolderDialog(ttk.Toplevel):
         self._listbox.delete(*self._listbox.get_children())
         for item in items:
             cnt = item["child_count"]
-            cnt_str = str(cnt) if cnt else "â€“"
+            cnt_str = str(cnt) if cnt else "0"
             self._listbox.insert("", END, iid=item["id"],
                                  values=(item["name"], cnt_str))
         current_name = self._nav_stack[-1][1]
@@ -476,21 +476,21 @@ class StundenrechnerApp:
             row=1, column=0, sticky=W, padx=(0, 10), pady=6
         )
         self.customer_var = ttk.StringVar()
-        self.customer_entry = ttk.Entry(
+        self.customer_combo = ttk.Combobox(
             frame, textvariable=self.customer_var, font=(FONT_FAMILY, 10)
         )
-        self.customer_entry.grid(row=1, column=1, sticky=EW, pady=6)
+        self.customer_combo.grid(row=1, column=1, sticky=EW, pady=6)
 
         # Komissionsnummer
         ttk.Label(frame, text="Komissions-Nr.:", font=(FONT_FAMILY, 10), width=14).grid(
             row=2, column=0, sticky=W, padx=(0, 10), pady=6
         )
         self.commission_var = ttk.StringVar()
-        self.commission_entry = ttk.Entry(
+        self.commission_combo = ttk.Combobox(
             frame, textvariable=self.commission_var, font=(FONT_FAMILY, 10),
             validate="key", validatecommand=_vcmd_int,
         )
-        self.commission_entry.grid(row=2, column=1, sticky=EW, pady=6)
+        self.commission_combo.grid(row=2, column=1, sticky=EW, pady=6)
 
         # Aufgabe
         ttk.Label(frame, text="Aufgabe:", font=(FONT_FAMILY, 10), width=14).grid(
@@ -824,7 +824,7 @@ class StundenrechnerApp:
         self.customer_var.set("")
         self.commission_var.set("")
         self._refresh_all()
-        self.customer_entry.focus_set()
+        self.customer_combo.focus_set()
 
     def _delete_entry(self):
         selected = self.tree.selection()
@@ -956,6 +956,8 @@ class StundenrechnerApp:
         self._load_entries()
         self._update_monthly_info()
         self._update_task_list()
+        self._update_customer_list()
+        self._update_commission_list()
         self._update_export_months()
 
     def _load_entries(self):
@@ -995,6 +997,14 @@ class StundenrechnerApp:
     def _update_task_list(self):
         tasks = self.db.get_all_tasks()
         self.task_combo["values"] = tasks
+
+    def _update_customer_list(self):
+        customers = self.db.get_all_customers()
+        self.customer_combo["values"] = customers
+
+    def _update_commission_list(self):
+        commissions = self.db.get_all_commissions()
+        self.commission_combo["values"] = commissions
 
     def _update_export_months(self):
         available = self.db.get_available_months()

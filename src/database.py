@@ -163,6 +163,24 @@ class Database:
         cursor.execute("SELECT name FROM tasks ORDER BY name")
         return [row[0] for row in cursor.fetchall()]
 
+    def get_all_customers(self) -> list:
+        """Gibt alle einzigartigen Kundennamen zurück."""
+        cursor = self.conn.cursor()
+        cursor.execute(
+            "SELECT DISTINCT customer FROM entries "
+            "WHERE customer != '' ORDER BY customer"
+        )
+        return [row[0] for row in cursor.fetchall()]
+
+    def get_all_commissions(self) -> list:
+        """Gibt alle einzigartigen Komissionsnummern zurück."""
+        cursor = self.conn.cursor()
+        cursor.execute(
+            "SELECT DISTINCT commission FROM entries "
+            "WHERE commission != '' ORDER BY commission"
+        )
+        return [row[0] for row in cursor.fetchall()]
+
     # ── Verfügbare Monate ─────────────────────────────────────
 
     def get_available_months(self) -> list:
