@@ -1,0 +1,37 @@
+name: Build & Release
+
+on:
+  push:
+    tags:
+      - "v*"   # Wird ausgelöst bei Tags wie v1.0, v1.1, v2.0, ...
+
+jobs:
+  build:
+    runs-on: windows-latest
+
+    steps:
+      - name: Code auschecken
+        uses: actions/checkout@v4
+
+      - name: Python einrichten
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+
+      - name: Abhängigkeiten installieren
+        run: |
+          pip install -r requirements.txt
+          pip install pyinstaller
+
+      - name: EXE bauen
+        run: >
+          pyinstaller --onefile --windowed
+          --name Stundenrechner
+          --collect-all ttkbootstrap
+          --clean
+          main.py
+
+      - name: Release erstellen & EXE hochladen
+        uses: softprops/action-gh-release@v2
+        with:
+          files: dist/Stundenrechner.exe
