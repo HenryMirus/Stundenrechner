@@ -6,11 +6,13 @@
 
 ```
 stundenrechner/
-├── app.py              # Hauptanwendung (GUI + Login)
-├── auth.py             # Microsoft-Authentifizierung (MSAL)
-├── onedrive.py         # OneDrive-Integration (Graph API)
-├── database.py         # Datenbankzugriff (SQLite, pro Benutzer)
-├── exporter.py         # Excel-Export (openpyxl)
+├── main.py             # Einstiegspunkt (fügt src/ zum Suchpfad hinzu)
+├── src/
+│   ├── app.py          # Hauptanwendung (GUI + Login)
+│   ├── auth.py         # Microsoft-Authentifizierung (MSAL)
+│   ├── onedrive.py     # OneDrive-Integration (Graph API)
+│   ├── database.py     # Datenbankzugriff (SQLite, pro Benutzer)
+│   └── exporter.py     # Excel-Export (openpyxl)
 ├── requirements.txt    # Python-Abhängigkeiten
 ├── build.bat           # Build-Skript (PyInstaller)
 ├── Stundenrechner.spec # PyInstaller-Spec-Datei
@@ -43,7 +45,7 @@ Für die Microsoft-Anmeldung ist eine Azure App Registration erforderlich:
 2. Kontotyp: **Konten in beliebigen Organisationsverzeichnissen + persönliche Konten**
 3. Umleitungs-URI: **Öffentlicher Client/nativ** → `http://localhost`
 4. API-Berechtigungen (delegiert): **User.Read**, **Files.ReadWrite**
-5. Client-ID in `auth.py` → `MS_CLIENT_ID` eintragen
+5. Client-ID in `src/auth.py` → `MS_CLIENT_ID` eintragen
 
 ---
 
@@ -63,9 +65,9 @@ pip install -r requirements.txt
 ### App starten
 
 ```bash
-python app.py
+python main.py
 # oder:
-.venv\Scripts\python.exe app.py
+.venv\Scripts\python.exe main.py
 ```
 
 ---
@@ -217,7 +219,8 @@ pyinstaller --onefile --windowed --name Stundenrechner ^
   --collect-all msal ^
   --hidden-import=requests ^
   --hidden-import=msal ^
-  --clean app.py
+  --paths src ^
+  --clean main.py
 ```
 
 Die fertige EXE liegt unter `dist\Stundenrechner.exe`.
